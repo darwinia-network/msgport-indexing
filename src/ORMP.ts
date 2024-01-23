@@ -1,9 +1,5 @@
 import { ponder } from "@/generated";
 
-ponder.on("ORMP:AppConfigUpdated", async ({ event, context }) => {
-  console.log(event.args);
-});
-
 // {
 //   name: 'DefaultConfigUpdated',
 //   args: {
@@ -126,16 +122,17 @@ ponder.on("ORMP:AppConfigUpdated", async ({ event, context }) => {
 //   }
 // }
 
-ponder.on("ORMP:DefaultConfigUpdated", async ({ event, context }) => {
-  const { OrmpDefaultConfigUpdated } = context.db;
-
-  const { oracle, relayer } = event.args;
-
-  await OrmpDefaultConfigUpdated.create({
-    id: event.log.id,
-    data: {
-      oracle: oracle,
-      relayer: relayer,
-    }
-  });
+ponder.on("ORMP:MessageAccepted", async ({ event, context }) => {
+  console.log("ORMP:MessageAccepted", event.args);
+  // const { OrmpDefaultConfigUpdated } = context.db;
+  //
+  // const { oracle, relayer } = event.args;
+  //
+  // await OrmpDefaultConfigUpdated.create({
+  //   id: event.log.id,
+  //   data: {
+  //     oracle: oracle,
+  //     relayer: relayer,
+  //   }
+  // });
 });
